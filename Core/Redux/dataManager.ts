@@ -155,7 +155,9 @@ class DataManager {
         if (notifTexts?.success) {
           toast.success(notifTexts.success);
         }
-        console.log("STATUS 200 RES:", response);
+        if(process.env.NODE_ENV == 'development'){
+          console.log("STATUS 200 RES:", response);
+        }
         if (typeof reload == "string") {
           window.location.href = reload;
         }
