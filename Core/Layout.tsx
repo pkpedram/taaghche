@@ -19,7 +19,7 @@ const Layout  = ({children, checkLayoutVersion} : LayoutType) => {
     <div className={`w-full min-h-screen flex  flex-col`}>
       <Header />
         
-      <div className='flex-1'>
+      <div className='flex-1 mt-40 max-w-[75rem] mx-auto w-full py-10 px-4'>
         {children}
       </div>
 

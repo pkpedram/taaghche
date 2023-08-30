@@ -14,6 +14,12 @@ const nextConfig = withPWA({
         port: '',
         pathname: '/images/**',
       },
+      {
+        protocol: 'https',
+        hostname: 'img.taaghche.com',
+        port: '',
+        pathname: '/**',
+      },
     ],
   },
 })

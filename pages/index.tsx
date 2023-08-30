@@ -5,11 +5,12 @@ import { wrapper } from "../Core/Redux/store";
 import axios from "axios";
 import { apiConfig } from "../Core/Redux/constants";
 import { FilteringData } from "../Core/Redux/Reducers/Filters";
+import BookList from "../Core/Components/BookList";
 
 const Home: NextPage = () => {
   return (
     <Fragment>
-      <div className="w-full p-5 "></div>
+      <BookList />
     </Fragment>
   );
 };
