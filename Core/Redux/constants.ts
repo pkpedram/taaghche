@@ -4,7 +4,7 @@ export type ApiConfig = {
 }
 
 export const apiConfig : ApiConfig = {
-    domain: 'https://foolad.behkarchoob.com/',
-    baseUrl: 'https://foolad.behkarchoob.com/api/v1.0',
+    domain: 'https://get.taaghche.com/v2/',
+    baseUrl: 'https://get.taaghche.com/v2/',
 };
 

@@ -2,12 +2,19 @@ import { HYDRATE } from "next-redux-wrapper";
 import { AnyAction } from "redux";
 import { FilterState } from "../reducerTypes";
 
-
+export type FilteringData = {
+  hasMore: boolean,
+  nextOffset: string,
+  orderingList: string
+}
 
 const initialState: FilterState = {
     generatedParams: {
 
     },
+    hasMore: false,
+    nextOffset: '',
+    orderingList: []
 };
 
 const filterState = (state : FilterState = initialState, action: AnyAction) => {
@@ -18,6 +25,15 @@ const filterState = (state : FilterState = initialState, action: AnyAction) => {
     return {
         ...state,
         ...payload.filterState
+    }
+
+    case 'SET_FILTERING_DATA': 
+    let data : FilteringData = JSON.parse(payload)
+    return {
+      ...state,
+      hasMore: data.hasMore,
+      nextOffset: data.nextOffset,
+      orderingList: JSON.parse(data.orderingList)
     }
 
   case 'GENERATE_PARAMS': 

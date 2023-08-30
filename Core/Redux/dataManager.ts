@@ -6,7 +6,8 @@ let { baseUrl } = apiConfig;
 baseUrl = baseUrl + "/";
 
 export interface Options {
-  dispatch: Dispatch;
+  dispatch: Dispatch,
+  params?: object
 }
 
 export interface NotifTexts {
@@ -21,9 +22,9 @@ const Axios = axios.create({
 class DataManager {
   get = async (
     url: string,
-    params: {},
+    params: object,
     opt: Options,
-    data: {},
+    data: any,
     reload: string | boolean
   ) =>
     await this.check(
