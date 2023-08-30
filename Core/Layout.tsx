@@ -3,6 +3,7 @@ import Header from './Components/Header'
 import { RootState } from './Redux/store'
 import { connect } from 'react-redux'
 import { publicActions } from './Redux/Actions'
+import Footer from './Components/Footer'
 
 export interface LayoutType {
     children: ReactNode,
@@ -15,9 +16,14 @@ const Layout  = ({children, checkLayoutVersion} : LayoutType) => {
     checkLayoutVersion()
   }, [])
   return (
-    <div className={`w-full min-h-screen`}>
+    <div className={`w-full min-h-screen flex  flex-col`}>
       <Header />
+        
+      <div className='flex-1'>
         {children}
+      </div>
+
+      <Footer />
     </div>
   )
 }
