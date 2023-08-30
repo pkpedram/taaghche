@@ -10,7 +10,7 @@ const initialState: FilterState = {
     },
 };
 
-export default function filterState(state : FilterState = initialState, action: AnyAction) {
+const filterState = (state : FilterState = initialState, action: AnyAction) => {
   const { type, payload } = action;
   switch (type) {
 
@@ -34,3 +34,6 @@ export default function filterState(state : FilterState = initialState, action: 
       return state;
   }
 }
+
+
+export default filterState

@@ -25,3 +25,5 @@ const makeStore = (context: Context) => configureStore({
 });
 
 export const wrapper = createWrapper<Store>(makeStore);
+
+export type RootState = ReturnType<typeof persistedReducer>
