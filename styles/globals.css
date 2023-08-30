@@ -24,7 +24,7 @@
 
 html,
 body {
-  /* background: #E5E5E5; */
+  background: #E5E5E5;
   margin: 0;
   /* direction: rtl; */
   /* text-align: right; */
@@ -37,5 +37,8 @@ a, span, li, p, button, h1, h2, h3, h4, h5, h6, input::placeholder, input, texta
   font-style: normal;
   margin: 0;
   padding: 0;
-  color: #323232;
+  color: #212121;
+}
+*{
+  direction: rtl;
 }
