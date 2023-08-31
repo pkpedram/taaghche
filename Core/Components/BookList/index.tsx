@@ -76,7 +76,7 @@ const BookList = ({
       {filteredProducts?.map((item, idx) => (
         <BookListItem item={item} key={`BOOK_${item.id}__${idx}`} />
       ))}
-      {isLoading && [...Array(16)].map((item) => <BookListItemLoading />)}
+      {isLoading && [...Array(16)].map((item, idx) => <BookListItemLoading key={`BOOK_ITEM_LOADING__${idx}`} />)}
       {!isLoading && <EndlessLastPart />}
     </div>
   );

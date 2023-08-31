@@ -21,14 +21,15 @@ const BookListItem = ({ item, isMobile }: BookListItemProps) => {
       className="w-full bg-white p-3 flex flex-col justify-between overflow-hidden rounded-lg border hover:shadow-lg hover:-translate-y-3 hover:scale-110"
     >
       <div>
-        <div className="w-full overflow-hidden flex justify-center h-40 relative">
+        <div className="w-full overflow-hidden flex justify-center h-52 relative">
           <Image
             src={item.coverUri}
             alt={item.title}
-            width={150}
-            height={150}
-            className="rounded-lg object-cover"
+            width={'256'}
+            height={'75'}
+            className="rounded-lg object-contain drop-shadow"
             loading="lazy"
+            priority={false}
           />
 
           {(!isMobile && showRating && item.rating) && (
@@ -69,9 +70,9 @@ const BookListItem = ({ item, isMobile }: BookListItemProps) => {
       <div className="w-full flex items-center justify-between">
         <p className="mt-2">{item.price.toLocaleString("fa-ir")} تومان</p>
         {(isMobile && item.rating) && (
-          <p>
+          <div>
             <Stars value={Math.floor(item.rating)} />
-          </p>
+          </div>
         )}
       </div>
     </Link>
