@@ -28,13 +28,14 @@ const BookListItem = ({ item, isMobile }: BookListItemProps) => {
             width={150}
             height={150}
             className="rounded-lg object-cover"
+            loading="lazy"
           />
 
-          {!isMobile && showRating && (
+          {(!isMobile && showRating && item.rating) && (
             <div className="bg-black/50 backdrop-blur w-full h-full absolute rounded-lg flex flex-col items-center justify-center">
               <Stars value={Math.floor(item.rating)} />
               <p className="text-white text-sm mt-2">
-                {Number(item.rating.toFixed(2)).toLocaleString("fa-ir")} از{" "}
+                {Number(item?.rating?.toFixed(2)).toLocaleString("fa-ir")} از{" "}
                 {item.rates
                   .map((item) => item.count)
                   .reduce((a, b) => a + b, 0)
