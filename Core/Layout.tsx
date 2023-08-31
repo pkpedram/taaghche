@@ -4,6 +4,8 @@ import { RootState } from './Redux/store'
 import { connect } from 'react-redux'
 import { publicActions } from './Redux/Actions'
 import Footer from './Components/Footer'
+import { useConnect } from './Utils/Hooks'
+import { toast } from 'react-toastify'
 
 export interface LayoutType {
     children: ReactNode,
@@ -11,6 +13,13 @@ export interface LayoutType {
 }
 
 const Layout  = ({children, checkLayoutVersion} : LayoutType) => {
+  const isConnected = useConnect()
+
+  useEffect(() => {
+    if(!isConnected){
+      toast.error('لطفا اتصال خود به اینترنت را چک کنید')
+    }
+  }, [isConnected])
 
   useEffect(() => {
     checkLayoutVersion()

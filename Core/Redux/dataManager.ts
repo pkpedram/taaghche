@@ -175,6 +175,11 @@ class DataManager {
       }else{
         toast.error(notifTexts.error)
       }
+      if(typeof window !== 'undefined'){
+        if(!window.navigator.onLine){
+          toast.error('لطفا اتصال خود را به اینترنت چک کنید')
+        }
+      }
 
       console.log(error);
       dispatch({
