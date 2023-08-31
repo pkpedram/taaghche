@@ -99,5 +99,6 @@ export interface ProductState {
     productList: Array<ProductListItem>,
     productInfo: ProductInfo,
     relatedProductsList: Array<ProductListItem>,
-    ordering: string
+    ordering: string,
+    firstTimeFetching: boolean
 }

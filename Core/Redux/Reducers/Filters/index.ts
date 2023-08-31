@@ -48,6 +48,7 @@ const filterState = (state : FilterState = initialState, action: AnyAction) => {
         ...payload.filterState
     }
 
+
     case 'SET_FILTERING_DATA': 
     let data : FilteringData = JSON.parse(payload)
     return {
@@ -56,6 +57,19 @@ const filterState = (state : FilterState = initialState, action: AnyAction) => {
       nextOffset: data.nextOffset,
       orderingList: JSON.parse(data.orderingList)
     }
+
+    case 'everything':
+      if(typeof payload !== 'string'){
+        return {
+          ...state,
+          hasMore: payload.hasMore,
+          nextOffset: payload.nextOffset,
+        }
+      }else{
+        return state
+      }
+
+  
 
   case 'GENERATE_PARAMS': 
     return {

@@ -5,28 +5,33 @@ import { ProductListItem } from "../../Redux/Reducers/reducerTypes";
 import BookListItem from "./BookListItem";
 import productActions from "../../Redux/Actions/Products";
 import BookListItemLoading from "./BookListItemLoading";
+import EndlessLastPart from "../EndlessLastPart";
 
 type BookListProps = {
-  isMobile: boolean,
   productList: Array<ProductListItem>,
   generatedParams: {
     order: string | undefined,
   },
   getProductList: Function,
   ordering: string,
-  isLoading: boolean
+  isLoading: boolean,
+  clearProductList: Function
 };
 
 const BookList = ({
-  isMobile,
   productList,
   generatedParams,
   getProductList,
   ordering,
-  isLoading
+  isLoading,
+  clearProductList
 }: BookListProps) => {
+
   useEffect(() => {
     if (generatedParams.order) {
+      if(generatedParams.order != ordering){
+        clearProductList()
+      }
       getProductList(
         {},
         {
@@ -34,19 +39,24 @@ const BookList = ({
           ...generatedParams,
         }
       );
-      window.scrollTo({ top: 0, behavior: "smooth" });
+      
     }
   }, [generatedParams]);
 
+
   return (
-    <div className={`w-full grid sm:grid-cols-1 grid-cols-5 gap-4`}>
-      {productList?.map((item) => (
-        <BookListItem item={item} key={`BOOK_${item.id}`} />
+    <div className={`w-full grid sm:grid-cols-1 grid-cols-5 gap-4 mb-8`}>
+      {productList?.map((item, idx) => (
+        <BookListItem item={item} key={`BOOK_${item.id}__${idx}`} />
       ))}
       {
-       isLoading && [...Array(16)].map(item => (
+       isLoading &&
+        [...Array(16)].map(item => (
             <BookListItemLoading />
         ))
+      }
+      {
+        !isLoading && <EndlessLastPart /> 
       }
     </div>
   );
@@ -61,6 +71,7 @@ const mapStateToProps = (state: RootState) => ({
 });
 const mapDispatchToProps = {
   getProductList: productActions.getProductList,
+  clearProductList: productActions.clearProductList
 };
 
 export default connect(mapStateToProps, mapDispatchToProps)(BookList);

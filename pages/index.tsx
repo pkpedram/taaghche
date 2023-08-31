@@ -4,7 +4,6 @@ import { wrapper } from "../Core/Redux/store";
 import { apiConfig } from "../Core/Redux/constants";
 import BookList from "../Core/Components/BookList";
 import Filters from "../Core/Components/Filters";
-import { type } from "os";
 
 const Home: NextPage = () => {
   return (

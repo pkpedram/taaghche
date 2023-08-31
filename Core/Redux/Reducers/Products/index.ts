@@ -7,6 +7,7 @@ let initialState : ProductState = {
     productList: [],
     relatedProductsList: [],
     ordering: '1',
+    firstTimeFetching: false,
 }
 
 const productState = (state : ProductState  = initialState, action : AnyAction) => {
@@ -29,7 +30,7 @@ const productState = (state : ProductState  = initialState, action : AnyAction) 
                 
                     return {
                         ...state,
-                        productList: [... payload.bookList.books],
+                        productList:  [...state.productList, ...payload.bookList.books],
                         ordering: params?.order === state.ordering ? state.ordering : params?.order
                     }
                 
@@ -39,9 +40,10 @@ const productState = (state : ProductState  = initialState, action : AnyAction) 
                 if(typeof payload == 'string'){
                     return {
                         ...state,
-                        productList: JSON.parse(payload).bookList.books
+                        productList: [...JSON.parse(payload).bookList.books]
                     }
                 }else{
+                    // alert('hi')
                     return {
                         ...state,
                         productList: [...state.productList, ...payload.bookList.books]
@@ -78,13 +80,13 @@ const productState = (state : ProductState  = initialState, action : AnyAction) 
             
             
         // FIRST LOAD
-        case 'LOADING_START':
-            if(state.productList.length === 16){
+        case 'CLEAR_PRODUCT_LIST':
+            
                 return {
                     ...state,
                     productList: []
                 }
-            }    
+              
 
         default: 
             return state    
