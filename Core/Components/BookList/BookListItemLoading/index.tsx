@@ -3,7 +3,7 @@ import React from 'react'
 const BookListItemLoading = () => {
   return (
     <div
-      className="w-full animate-pulse bg-white p-3 flex flex-col justify-between overflow-hidden rounded-lg border hover:shadow-lg hover:-translate-y-3 hover:scale-110"
+      className="w-full animate-pulse bg-white p-3 flex flex-col justify-between overflow-hidden rounded-lg border hover:shadow-lg "
     >
       <div>
         <div className="w-full overflow-hidden bg-black/30 rounded-lg flex justify-center h-40 relative">
