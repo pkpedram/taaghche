@@ -49,7 +49,7 @@ const HeaderBottom = () => {
       </div>
 
       <Link href={"https://taaghche.com/download"}>
-        <p className="text-white p-2 bg-main-blue text-center text-sm w-24 min-w-max rounded-full">
+        <p className="text-black p-2 bg-main-blue/70 text-center text-sm w-24 min-w-max rounded-full">
           نصب طاقچه
         </p>
       </Link>

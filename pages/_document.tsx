@@ -42,17 +42,7 @@ class _Document extends Document {
           <link rel='apple-touch-icon' sizes='180x180' href='/icons/apple-touch-icon.png' />
           <link rel='manifest' href='/manifest.json' />
           <link rel='shortcut icon' href='/favicon.ico' />
-          <style>{`
-            html, body, #__next {
-              height: 100%;
-            }
-            #__next {
-              margin: 0 auto;
-            }
-            h1 {
-              text-align: center;
-            }
-            `}</style>
+          <title>پروژه مصاحبه طاقچه</title>
         </Head>
         <body>
           <Main />

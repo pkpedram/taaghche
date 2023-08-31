@@ -3,7 +3,7 @@ const withPWA = require('next-pwa')({
   dest: 'public'
 })
 
-const nextConfig ={
+const nextConfig = withPWA({
   reactStrictMode: true,
   swcMinify: true,
   images: {
@@ -22,7 +22,7 @@ const nextConfig ={
       },
     ],
   },
-}
+})
 
 // withPWA()
 
