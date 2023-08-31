@@ -34,7 +34,7 @@ type files = {
     sequenceNo: number
 }
 
-type categories = {
+export type categories = {
     id: number,
     parent: number,
     title: string,
@@ -44,6 +44,13 @@ type categories = {
 type rates = {
     value: number,
     count: number
+}
+
+export type bookTypes = {
+    id: number,
+    name: string,
+    price: number,
+    beforeOffPrice: number
 }
 
 export type ProductListItem = {
@@ -62,7 +69,7 @@ export type ProductListItem = {
     rating: number,
     rates: Array<rates>,
     rateDetails: Array<object>,
-    types: Array<object>,
+    types: Array<bookTypes>,
     sticker: string,
     beforeOffPrice: number,
     offText: string,
