@@ -3,11 +3,13 @@ import type { GetServerSideProps, NextPage } from "next";
 import { wrapper } from '../../../Core/Redux/store';
 import { apiConfig } from '../../../Core/Redux/constants';
 import BookInfo from '../../../Core/Components/BookInfo';
+import BookDetails from '../../../Core/Components/BookDetails';
 
 const BookDetailPage : NextPage = () => {
   return (
     <Fragment>
       <BookInfo />
+      <BookDetails />
     </Fragment>
   )
 }
