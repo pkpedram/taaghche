@@ -69,7 +69,7 @@ const mapStateToProps = (state: RootState) => ({
   orderingList: state.filterState.orderingList,
   productCustomFilters: state.filterState.customFilters.products,
   nextOffset: state.filterState.nextOffset,
-  ordering: state.filterState.ordering,
+  ordering: state.productState.ordering,
   filteredProducts: state.productState.filteredProducts,
 });
 const mapDispatchToProps = {
