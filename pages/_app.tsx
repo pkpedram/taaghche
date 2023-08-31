@@ -7,6 +7,7 @@ import { ToastContainer } from 'react-toastify';
 // Style
 import "../styles/globals.css";
 import 'react-toastify/dist/ReactToastify.css';
+import ErrorBoundary from "../Core/Components/ErrorBoundary";
 
 function MyApp({ Component, pageProps }: AppProps) {
   return (
@@ -17,7 +18,9 @@ function MyApp({ Component, pageProps }: AppProps) {
           content="minimum-scale=1, initial-scale=1, width=device-width, shrink-to-fit=no, user-scalable=no, viewport-fit=cover"
         />
       </Head>
+      <ErrorBoundary>
       <Component {...pageProps} />
+      </ErrorBoundary>
       <ToastContainer />
     </Layout>
   );

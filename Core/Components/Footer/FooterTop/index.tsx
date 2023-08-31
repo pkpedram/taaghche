@@ -41,7 +41,7 @@ const FooterTop = ({ isMobile }: FooterTopProps) => {
         <h1 className="text-2xl text-main-blue">نزدیک ترین کتابفروشی شهر</h1>
         <div className="w-full flex gap-3">
           {downloadItems.map((item, idx) => (
-            <Link href={item.link}>
+            <Link href={item.link} key={`DOWNLOAD_ITEMS__${idx}`}>
               <div className="w-36">
                 <Image
                   src={item.image}
