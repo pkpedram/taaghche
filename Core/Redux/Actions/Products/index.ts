@@ -7,6 +7,16 @@ const productActions = {
     },
     clearProductList: () => (dispatch : Dispatch) => {
         dispatch({type: 'CLEAR_PRODUCT_LIST'})
+    },
+    loadPreviousData: () => (dispatch: Dispatch) => {
+        let data = localStorage.getItem('previousData')
+        if(data){
+            let expire = new Date(JSON.parse(data)?.expire).getTime()
+           if(expire > new Date().getTime()){
+            dispatch({type: 'LOAD_PREVIOUS_DATA', payload: data})
+           }
+        }
+
     }
 
 }

@@ -81,6 +81,16 @@ const filterState = (state : FilterState = initialState, action: AnyAction) => {
     }
 
 
+    // FIRST LOAD
+
+    case 'LOAD_PREVIOUS_DATA':
+      let previousData = typeof payload === 'string' ? JSON.parse(payload) : {}
+      return {
+        ...state,
+        nextOffset: previousData.nextOffset
+      }
+
+
     default:
       return state;
   }

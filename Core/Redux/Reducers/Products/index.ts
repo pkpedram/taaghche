@@ -77,16 +77,24 @@ const productState = (state : ProductState  = initialState, action : AnyAction) 
                 productList: [...state.productList.sort((a,b) => a.price - b.price)]
                 
             }   
-            
-            
-        // FIRST LOAD
+               
+      
         case 'CLEAR_PRODUCT_LIST':
             
                 return {
                     ...state,
                     productList: []
                 }
-              
+
+          // FIRST LOAD 
+          
+          case 'LOAD_PREVIOUS_DATA': 
+                let data = typeof payload === 'string' ? JSON.parse(payload) : {}
+                return {
+                    ...state,
+                    ordering: data.ordering,
+                    productList: data.productList
+                }
 
         default: 
             return state    
