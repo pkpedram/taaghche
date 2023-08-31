@@ -3,6 +3,7 @@ import { PublicState } from "../reducerTypes";
 
 let initialState : PublicState = {
     isMobile: false,
+    isLoading: false,
 }
 
 const publicState = (state: PublicState = initialState, action: AnyAction) => {
@@ -14,7 +15,18 @@ const publicState = (state: PublicState = initialState, action: AnyAction) => {
                 ...state,
                 isMobile: payload
             }
-
+        case 'LOADING_START':
+            return {
+                ...state,
+                isLoading: true
+            } 
+        case 'LOADING_END':
+            return {
+                ...state,
+                isLoading: false
+            }
+            
+            
         default:
             return state
     }

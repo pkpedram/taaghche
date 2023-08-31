@@ -74,7 +74,17 @@ const productState = (state : ProductState  = initialState, action : AnyAction) 
                 ...state,
                 productList: [...state.productList.sort((a,b) => a.price - b.price)]
                 
-            }         
+            }   
+            
+            
+        // FIRST LOAD
+        case 'LOADING_START':
+            if(state.productList.length === 16){
+                return {
+                    ...state,
+                    productList: []
+                }
+            }    
 
         default: 
             return state    

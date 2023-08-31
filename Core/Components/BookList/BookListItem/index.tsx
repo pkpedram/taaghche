@@ -68,7 +68,7 @@ const BookListItem = ({ item, isMobile }: BookListItemProps) => {
       </div>
       <div className="w-full flex items-center justify-between">
         <p className="mt-2">{item.price.toLocaleString("fa-ir")} تومان</p>
-        {isMobile && (
+        {(isMobile && item.rating) && (
           <p>
             <Stars value={Math.floor(item.rating)} />
           </p>

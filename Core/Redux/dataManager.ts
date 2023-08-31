@@ -11,12 +11,12 @@ export interface Options {
 }
 
 export interface NotifTexts {
-  success: string;
-  error: string;
+  success: string | null;
+  error: string | null;
 }
 
 const Axios = axios.create({
-  validateStatus: null,
+  // validateStatus: null,
   baseURL: baseUrl,
 });
 class DataManager {
@@ -37,7 +37,11 @@ class DataManager {
           headers: {},
         }),
       data || params,
-      reload
+      reload,
+     {
+        success: null,
+        error: "خطایی رخ داده است",
+      }
     );
 
   patch = async (
@@ -168,6 +172,13 @@ class DataManager {
       if (error?.response?.data?.message) {
         toast.error(error?.response.data?.message);
         return null;
+      }else{
+        toast.error(notifTexts.error)
+      }
+      if(typeof window !== 'undefined'){
+        if(!window.navigator.onLine){
+          toast.error('لطفا اتصال خود را به اینترنت چک کنید')
+        }
       }
 
       console.log(error);
