@@ -15,7 +15,8 @@ export interface FilterState {
 }
 
 export interface PublicState {
-    isMobile: boolean
+    isMobile: boolean,
+    isLoading: boolean
 }
 
 type authors = {

@@ -4,15 +4,17 @@ import { connect } from "react-redux";
 import { ProductListItem } from "../../Redux/Reducers/reducerTypes";
 import BookListItem from "./BookListItem";
 import productActions from "../../Redux/Actions/Products";
+import BookListItemLoading from "./BookListItemLoading";
 
 type BookListProps = {
-  isMobile: boolean;
-  productList: Array<ProductListItem>;
+  isMobile: boolean,
+  productList: Array<ProductListItem>,
   generatedParams: {
-    order: string | undefined;
-  };
-  getProductList: Function;
-  ordering: string;
+    order: string | undefined,
+  },
+  getProductList: Function,
+  ordering: string,
+  isLoading: boolean
 };
 
 const BookList = ({
@@ -21,6 +23,7 @@ const BookList = ({
   generatedParams,
   getProductList,
   ordering,
+  isLoading
 }: BookListProps) => {
   useEffect(() => {
     if (generatedParams.order) {
@@ -40,6 +43,11 @@ const BookList = ({
       {productList?.map((item) => (
         <BookListItem item={item} key={`BOOK_${item.id}`} />
       ))}
+      {
+       isLoading && [...Array(16)].map(item => (
+            <BookListItemLoading />
+        ))
+      }
     </div>
   );
 };
@@ -49,6 +57,7 @@ const mapStateToProps = (state: RootState) => ({
   productList: state.productState.productList,
   generatedParams: state.filterState.generatedParams,
   ordering: state.productState.ordering,
+  isLoading: state.publicState.isLoading
 });
 const mapDispatchToProps = {
   getProductList: productActions.getProductList,
