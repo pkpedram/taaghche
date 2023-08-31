@@ -1,9 +1,27 @@
 import { AnyAction } from "redux";
-import { ProductListItem, ProductState, Publisher } from "../reducerTypes";
+import {  ProductListItem, ProductState, Publisher } from "../reducerTypes";
 import { HYDRATE } from "next-redux-wrapper";
 
 let initialState: ProductState = {
-  productInfo: {},
+  productInfo: {
+    canonicalId: 0,
+    description: '',
+    faqs: '',
+    hasPhysicalEdition: false,
+    htmlDescription: '',
+    id: 0,
+    numberOfPages: 0,
+    price: 0,
+    PublisherID: 0,
+    publisherSlug: '',
+    rateDetails: [],
+    rates: [],
+    rating: 0,
+    sourceBookId: 0,
+    sticker: '',
+    title:"",
+    types: []
+  },
   productList: [],
   relatedProductsList: [],
   filteredProducts: [],
@@ -94,11 +112,15 @@ const productState = (
         }
       }
 
-    case "book/" + params?.id:
+    case "bookDetail":
+        let bookData : {
+            book: ProductListItem,
+            relatedBooks: Array<object>
+        } = JSON.parse(payload)
       return {
         ...state,
-        productInfo: payload.book,
-        relatedProductsList: payload.relatedBooks,
+        productInfo: bookData?.book,
+        relatedProductsList: bookData?.relatedBooks,
       };
 
     // FRONTEND FILTERS

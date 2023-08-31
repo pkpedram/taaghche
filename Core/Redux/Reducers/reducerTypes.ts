@@ -92,6 +92,23 @@ export type ProductListItem = {
 
 
 export type ProductInfo =  {
+    id: number,
+    sourceBookId: number,
+    title: string;
+    hasPhysicalEdition: boolean;
+    canonicalId: number;
+    description: string;
+    htmlDescription: string;
+    faqs: string,
+    PublisherID: number,
+    publisherSlug: string;
+    price: number;
+    numberOfPages: number,
+    rating: number;
+    rates: Array<rates>;
+    rateDetails: Array<object>;
+    types: Array<object>;
+    sticker: string;
 
 }
 
