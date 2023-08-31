@@ -34,9 +34,7 @@ class DataManager {
         await Axios.get(url, {
           params,
           ...opt,
-          headers: {
-            Authorization: `Bearer ${localStorage.getItem("access")}`,
-          },
+          headers: {},
         }),
       data || params,
       reload
@@ -56,9 +54,7 @@ class DataManager {
       async () =>
         await Axios.patch(url, params, {
           ...opt,
-          headers: {
-            Authorization: `Bearer ${localStorage.getItem("access")}`,
-          },
+          headers: {},
         }),
       data || params,
       reload,
@@ -78,9 +74,7 @@ class DataManager {
       async () =>
         await Axios.post(url, params, {
           ...opt,
-          headers: {
-            Authorization: `Bearer ${localStorage.getItem("access")}`,
-          },
+          headers: {},
         }),
       data || params,
       reload,
@@ -100,9 +94,7 @@ class DataManager {
       async () =>
         await Axios.put(url, params, {
           ...opt,
-          headers: {
-            Authorization: `Bearer ${localStorage.getItem("access")}`,
-          },
+          headers: {},
         }),
       data || params,
       reload,
@@ -123,9 +115,7 @@ class DataManager {
         await Axios.delete(url, {
           ...opt,
           data: params,
-          headers: {
-            Authorization: `Bearer ${localStorage.getItem("access")}`,
-          },
+          headers: {},
         }),
       data || params,
       reload,
@@ -180,7 +170,7 @@ class DataManager {
         return null;
       }
 
-      console.log(error?.response?.data);
+      console.log(error);
       dispatch({
         type: url.split("/")[0] + "/" + "error",
         data: error?.response?.data,

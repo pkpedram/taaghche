@@ -1,8 +1,17 @@
+type customFilter = {
+    id: number,
+    title: string,
+    actionType: string
+}
+
 export interface FilterState {
     generatedParams: Object,
     hasMore: boolean,
     nextOffset: string,
-    orderingList: Array<object>
+    orderingList: Array<object>,
+    customFilters: {
+        products: Array<customFilter>
+    }
 }
 
 export interface PublicState {
@@ -88,5 +97,6 @@ export type ProductInfo =  {
 export interface ProductState {
     productList: Array<ProductListItem>,
     productInfo: ProductInfo,
-    relatedProductsList: Array<ProductListItem>
+    relatedProductsList: Array<ProductListItem>,
+    ordering: string
 }

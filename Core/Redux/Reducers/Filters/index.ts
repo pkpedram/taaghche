@@ -14,7 +14,28 @@ const initialState: FilterState = {
     },
     hasMore: false,
     nextOffset: '',
-    orderingList: []
+    orderingList: [],
+    customFilters: {
+      products: [
+        {
+          id: 1,
+          title: 'تعداد ستاره',
+          actionType: 'SORT_PRODUCTS_BY_STARS'
+        },
+        {
+          id: 2,
+          title: 'گران ترین',
+          actionType: 'SORT_PRODUCTS_BY_EXPENSIVE'
+
+        },
+        {
+          id: 3,
+          title: 'ارزان ترین',
+          actionType: 'SORT_PRODUCTS_BY_CHEAP'
+
+        }
+      ]
+    }
 };
 
 const filterState = (state : FilterState = initialState, action: AnyAction) => {

@@ -6,6 +6,7 @@ let initialState : ProductState = {
     productInfo: {},
     productList: [],
     relatedProductsList: [],
+    ordering: '1',
 }
 
 const productState = (state : ProductState  = initialState, action : AnyAction) => {
@@ -23,16 +24,58 @@ const productState = (state : ProductState  = initialState, action : AnyAction) 
         // NORMAL DISPATCH
 
         case 'everything':
-            return {
-                ...state,
-                productList: JSON.parse(payload).bookList.books
+            if(typeof params?.order === 'string'){
+                // ORDERING CHANGES ONLY ON CLIENT SIDE
+                
+                    return {
+                        ...state,
+                        productList: [... payload.bookList.books],
+                        ordering: params?.order === state.ordering ? state.ordering : params?.order
+                    }
+                
+            }else{
+                // UPDATES LIST FOR BOTH SERVERSIDE AND CLIENT SIDE
+                
+                if(typeof payload == 'string'){
+                    return {
+                        ...state,
+                        productList: JSON.parse(payload).bookList.books
+                    }
+                }else{
+                    return {
+                        ...state,
+                        productList: [...state.productList, ...payload.bookList.books]
+                    }
+                }
+                
             }
         case 'book/' + params?.id:
             return {
                 ...state,
                 productInfo: payload.book,
                 relatedProductsList: payload.relatedBooks
-            }     
+            }   
+            
+        // FRONTEND FILTERS
+        case 'SORT_PRODUCTS_BY_STARS':
+            return {
+                ...state,
+                productList: [...state.productList.sort((a,b) => b.rating - a.rating)]
+            } 
+
+        case 'SORT_PRODUCTS_BY_EXPENSIVE':
+            return {
+                ...state,
+                productList: [...state.productList.sort((a,b) => b.price - a.price)]
+                
+            }   
+        case 'SORT_PRODUCTS_BY_CHEAP':
+            return {
+                ...state,
+                productList: [...state.productList.sort((a,b) => a.price - b.price)]
+                
+            }         
+
         default: 
             return state    
     }
