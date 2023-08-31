@@ -2,9 +2,11 @@ import Head from "next/head";
 import Layout from "../Core/Layout";
 import { wrapper } from "../Core/Redux/store";
 import type { AppProps } from "next/app";
+import { ToastContainer } from 'react-toastify';
 
 // Style
 import "../styles/globals.css";
+import 'react-toastify/dist/ReactToastify.css';
 
 function MyApp({ Component, pageProps }: AppProps) {
   return (
@@ -16,6 +18,7 @@ function MyApp({ Component, pageProps }: AppProps) {
         />
       </Head>
       <Component {...pageProps} />
+      <ToastContainer />
     </Layout>
   );
 }
