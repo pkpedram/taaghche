@@ -22,7 +22,7 @@ export const getServerSideProps: GetServerSideProps<{}> =
       apiConfig.baseUrl +
         "everything?" +
         new URLSearchParams({
-          filters: `{"list":[{"type":3,"value":164},{"type":21,"value":0},{"type":50,"value":0}]}`,
+          filters: `{"list":[{"type":21,"value":0},{"type":50,"value":0}]}`,
           offset: "0-0-0-16",
           order: "1",
         }),

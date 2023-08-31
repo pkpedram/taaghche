@@ -95,10 +95,16 @@ export type ProductInfo =  {
 
 }
 
+export type Publisher = {
+    id: number | string,
+    title: string
+}
 export interface ProductState {
     productList: Array<ProductListItem>,
     productInfo: ProductInfo,
     relatedProductsList: Array<ProductListItem>,
     ordering: string,
-    firstTimeFetching: boolean
+    firstTimeFetching: boolean,
+    filteredProducts: Array<ProductListItem>,
+    publisherList: Array<Publisher>
 }
