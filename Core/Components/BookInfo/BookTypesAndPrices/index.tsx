@@ -14,7 +14,7 @@ type BookTypesAndPricesProps = {
 
 const BookTypesAndPrices = ({otherTypes, physical, bookId} : BookTypesAndPricesProps) => {
   const [expandPhysical, setExpandPhysical] = useState(true)
-  const [expandedType, setExpandedType] = useState<number | null>(otherTypes[0].id)
+  const [expandedType, setExpandedType] = useState<number | null>(otherTypes[0]?.id)
   return (
     <div className='w-96 2md:w-full bg-white p-4 rounded-3xl flex flex-col gap-4 justify-center'>
         {

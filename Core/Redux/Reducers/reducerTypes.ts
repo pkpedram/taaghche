@@ -94,11 +94,12 @@ export type ProductListItem = {
     state: number,
     encrypted: boolean,
     currencyPrice: number,
-    currencyBeforeOffPrice: number
+    currencyBeforeOffPrice: number,
 }
 
 
-export type ProductInfo =  {
+export type ProductInfo  =  {
+    
     id: number,
     sourceBookId: number,
     title: string;
@@ -125,7 +126,7 @@ export type Publisher = {
 }
 export interface ProductState {
     productList: Array<ProductListItem>,
-    productInfo: ProductInfo,
+    productInfo: ProductListItem,
     relatedProductsList: Array<ProductListItem>,
     ordering: string,
     firstTimeFetching: boolean,

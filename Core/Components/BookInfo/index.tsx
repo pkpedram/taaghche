@@ -20,12 +20,12 @@ const BookInfo = ({ productInfo, isMobile }: BookInfoProps) => {
   let overAllData = [
     {
       title: "نویسنده",
-      properties: [
+      properties: productInfo.authors.length !== 0 ? [
         ...productInfo.authors.map((item) => ({
           title: `${item.firstName} ${item.lastName}`,
           link: (item.firstName + " " + item.lastName).split(" ").join("-"),
         })),
-      ],
+      ] : [],
     },
     {
       title: "انتشارات",
@@ -97,25 +97,29 @@ const BookInfo = ({ productInfo, isMobile }: BookInfoProps) => {
                 </div>
               ))}
 
+            
+            {
+              productInfo.rating &&
               <div className="flex items-center text-sm text-gray-500 sm:flex-col sm:mb-3">
-                <p className="ml-8 sm:ml-0 sm:w-auto w-20">امتیاز:</p>
-                <div className="flex gap-2">
-                  <p className="p-1 px-2 text-xs rounded-full bg-main-blue/50">
-                    {Number(productInfo.rating.toFixed(2)).toLocaleString(
-                      "fa-ir"
-                    )}
-                  </p>
-                  <p>
-                    {" "}
-                    از{" "}
-                    {productInfo.rates
-                      .map((item) => item.count)
-                      .reduce((a, b) => a + b, 0)
-                      .toLocaleString("fa-ir")}{" "}
-                    رای
-                  </p>
-                </div>
+              <p className="ml-8 sm:ml-0 sm:w-auto w-20">امتیاز:</p>
+              <div className="flex gap-2">
+                <p className="p-1 px-2 text-xs rounded-full bg-main-blue/50">
+                  {Number(productInfo.rating.toFixed(2)).toLocaleString(
+                    "fa-ir"
+                  )}
+                </p>
+                <p>
+                  {" "}
+                  از{" "}
+                  {productInfo.rates
+                    .map((item) => item.count)
+                    .reduce((a, b) => a + b, 0)
+                    .toLocaleString("fa-ir")}{" "}
+                  رای
+                </p>
               </div>
+            </div>
+            }
             </div>
             <ShareButton
               bookInfoRef={bookInfoRef}
