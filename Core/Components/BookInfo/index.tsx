@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useRef, useState } from "react";
 import { RootState } from "../../Redux/store";
 import { connect } from "react-redux";
 import { ProductListItem } from "../../Redux/Reducers/reducerTypes";
@@ -6,13 +6,17 @@ import BreadCrumb from "../BreadCrumb";
 import Image from "next/image";
 import Link from "next/link";
 import BookTypesAndPrices from "./BookTypesAndPrices";
+import ShareButton from "./ShareButton";
 
 type BookInfoProps = {
   productInfo: ProductListItem;
-  isMobile: boolean
+  isMobile: boolean;
 };
 
 const BookInfo = ({ productInfo, isMobile }: BookInfoProps) => {
+  const bookInfoRef = useRef<HTMLDivElement>(null);
+  const [shareStart, setShareStart] = useState<boolean>(false);
+
   let overAllData = [
     {
       title: "نویسنده",
@@ -42,16 +46,21 @@ const BookInfo = ({ productInfo, isMobile }: BookInfoProps) => {
   ];
 
   return (
-    <div className="w-full">
-      <BreadCrumb
-        categories={productInfo.categories}
-        info={{
-          name: productInfo.title,
-          link: `https://taaghche.com/${productInfo.id}`,
-        }}
-      />
+    <div
+      className={`w-full ${shareStart ? "p-3 bg-[#E5E5E5]" : ""}`}
+      ref={bookInfoRef}
+    >
+      {!shareStart && (
+        <BreadCrumb
+          categories={productInfo.categories}
+          info={{
+            name: productInfo.title,
+            link: `https://taaghche.com/${productInfo.id}`,
+          }}
+        />
+      )}
 
-      <div className="flex w-full my-3 p-4 bg-white shadow-lg 2md:flex-col 2md:items-center rounded-2xl">
+      <div className="flex w-full my-3 p-4 bg-white shadow-lg 2md:flex-col 2md:items-center rounded-2xl ">
         <div className="w-1/4 sm:w-full 2md:mb-6 drop-shadow-lg">
           <Image
             src={productInfo.coverUri}
@@ -69,19 +78,22 @@ const BookInfo = ({ productInfo, isMobile }: BookInfoProps) => {
                 کتاب {productInfo.title}
               </h1>
               {overAllData.map((data, idx) => (
-                <div className="flex items-center text-sm text-gray-500 sm:flex-col sm:items-center sm:mb-3">
+                <div
+                  key={`INFO__${idx}`}
+                  className="flex items-center text-sm text-gray-500 sm:flex-col sm:items-center sm:mb-3"
+                >
                   <p className="ml-8 sm:ml-0 sm:w-auto w-20">{data.title}:</p>
 
                   <div className="flex flex-wrap">
-                  {data.properties.map((property, index) => (
-                    <div>
-                    <Link href={`https://taaghche.com/${property.link}`}>
-                      {property.title}
-                      {index !== data.properties.length - 1 && "/"}
-                    </Link>
-                    </div>
-                  ))}
-                    </div>
+                    {data.properties.map((property, index) => (
+                      <div key={`INFO_PROPERTY_${index}`}>
+                        <Link href={`https://taaghche.com/${property.link}`}>
+                          {property.title}
+                          {index !== data.properties.length - 1 && "/"}
+                        </Link>
+                      </div>
+                    ))}
+                  </div>
                 </div>
               ))}
 
@@ -105,10 +117,22 @@ const BookInfo = ({ productInfo, isMobile }: BookInfoProps) => {
                 </div>
               </div>
             </div>
+            <ShareButton
+              bookInfoRef={bookInfoRef}
+              setShareStart={setShareStart}
+              shareStart={shareStart}
+              title={productInfo?.title}
+            />
           </div>
           <BookTypesAndPrices
-          bookId={productInfo.id}
-          physical={{beforeOffPrice: productInfo.physicalBeforeOffPrice, has: productInfo.hasPhysicalEdition, price: productInfo.PhysicalPrice}} otherTypes={productInfo.types} />
+            bookId={productInfo.id}
+            physical={{
+              beforeOffPrice: productInfo.physicalBeforeOffPrice,
+              has: productInfo.hasPhysicalEdition,
+              price: productInfo.PhysicalPrice,
+            }}
+            otherTypes={productInfo.types}
+          />
         </div>
       </div>
     </div>
@@ -117,7 +141,7 @@ const BookInfo = ({ productInfo, isMobile }: BookInfoProps) => {
 
 const mapStateToProps = (state: RootState) => ({
   productInfo: state.productState.productInfo,
-  isMobile: state.publicState.isMobile
+  isMobile: state.publicState.isMobile,
 });
 const mapDispatchToProps = {};
 

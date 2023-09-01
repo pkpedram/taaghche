@@ -19,7 +19,7 @@ export interface HeaderPorps {
 const Header = ({ isMobile }: HeaderPorps) => {
   return (
     <div
-      className={`w-full fixed z-50 px-12 shadow-xl bg-white flex flex-col items-center pb-4`}
+      className={`w-full fixed z-30 px-12 shadow-xl bg-white flex flex-col items-center pb-4`}
     >
       {
         isMobile 
