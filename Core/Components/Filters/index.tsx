@@ -28,6 +28,7 @@ const Filters = ({
 }: filterProps) => {
   const [savedCustomFilter, setSavedCustomFilter] = useState("");
 
+
   useMemo(() => {
     if (savedCustomFilter.length !== 0) {
       generateCustomFilters({ actionType: savedCustomFilter });

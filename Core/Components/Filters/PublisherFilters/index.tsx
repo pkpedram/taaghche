@@ -25,8 +25,10 @@ const PublisherFilters = ({
   const [selectedPublishers, setSelectedPublishers] = useState<
     Array<Publisher | undefined>
   >([]);
+  const [selectValue, setSelectValue] = useState('')
 
   const selectPublisher = (e: any) => {
+      setSelectValue(e.target.value)
     if (
       !selectedPublishers.find((itm) => itm?.id == e.target.value) &&
       e.target.value.length !== 0
@@ -53,6 +55,7 @@ const PublisherFilters = ({
   return (
     <div className="w-full grid grid-cols-2 sm:grid-cols-1 gap-4">
       <Select
+      value={selectValue}
         list={publisherList}
         keyOfOption="title"
         valueOfOption="id"
